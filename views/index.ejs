@@ -1,0 +1,55 @@
+<%- include('layout/Header') %>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <% if (message) { %>
+                <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                <button class="btn btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+                <strong>
+                    <%= message.message %>
+                </strong>
+            </div>
+            <% } %>
+            <div class="table-responsive">
+                <% if (users && users.length > 0) { %>
+                    <table class="table table-stripped text-center py-3">
+                      <thead class="table-dark">
+                        <tr>
+                          <th>ID</th>
+                          <th>IMAGE</th>
+                          <th>NAME</th>
+                          <th>EMAIL</th>
+                          <th>PHONE</th>
+                          <th>ACTION</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% users.forEach((user,index) => { %>
+                            <tr class="align-middle">
+                                <td><%= index+1 %></td>
+                                <td><img src="<%= user.image  %>" class="img-thumbnail" width="50" alt="<% index +"_"+user.image %>"></td>
+                                <td><%= user.name  %></td>
+                                <td><%= user.email  %></td>
+                                <td><%= user.phone  %></td>
+                                <td>
+                                  <a href="/edit/<%= user._id  %>" class="text-success">
+                                    <i class="fas fa-edit fa-lg mx-1"></i>
+                                  </a>
+                                  <a href="/delete/<%= user._id  %>" class="text-danger">
+                                    <i class="fas fa-trash fa-lg mx-1"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                        <% }) %>
+                      </tbody>
+                    </table>
+                  <% } else { %>
+                    <h1 class="text-secondary text-center mt-5">No Users Found!</h1>
+                  <% } %>
+                  
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/Footer') %>

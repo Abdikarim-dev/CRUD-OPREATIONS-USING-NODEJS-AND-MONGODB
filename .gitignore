@@ -1,0 +1,11 @@
+# Ignore environment configuration files
+.env
+
+# Ignore dependencies and package manager files
+node_modules/
+package-lock.json
+
+# Ignore logs, temporary files, and testing artifacts
+*.log
+.log/
+.tmp/
